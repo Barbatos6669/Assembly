@@ -1,0 +1,53 @@
+; ===========================
+; x86-64 GENERAL PURPOSE REGISTERS
+; ===========================
+
+RAX ; Accumulator - used for return values and arithmetic
+RBX ; Base - preserved across calls, general-purpose
+RCX ; Counter - loops, shift/rotate, syscall arg 4
+RDX ; Data - I/O, multiplication/division, syscall arg 3
+RSI ; Source Index - memory/string ops, syscall arg 2
+RDI ; Destination Index - memory/string ops, syscall arg 1
+RBP ; Base Pointer - stack frame base (used for local vars)
+RSP ; Stack Pointer - always points to the top of the stack
+RIP ; Instruction Pointer - points to the next instruction
+
+; ===========================
+; FLAGS REGISTER (RFLAGS)
+; ===========================
+
+ZF ; Zero Flag - set if result is zero
+SF ; Sign Flag - set if result is negative
+CF ; Carry Flag - set on unsigned overflow
+OF ; Overflow Flag - set on signed overflow
+PF ; Parity Flag - set if lowest byte has even # of 1s
+AF ; Adjust Flag - used in BCD arithmetic (rarely used)
+
+; ===========================
+; EXTENDED REGISTERS
+; ===========================
+
+R8 - R15 ; Extra general-purpose registers (only in 64-bit mode)
+ ; Used for arguments in Linux & Windows calling conventions
+
+; ===========================
+; REGISTER SIZE BREAKDOWN
+; ===========================
+
+RAX ; 64-bit register
+EAX ; Lower 32 bits of RAX
+AX ; Lower 16 bits of EAX
+AH ; High 8 bits of AX
+AL ; Low 8 bits of AX
+
+; Same structure applies to all GPRs:
+; RBX -> EBX -> BX -> BH/BL, etc.
+
+; ===========================
+; CALLING CONVENTION NOTES
+; ===========================
+
+; Linux Syscalls:
+; RDI, RSI, RDX, R10, R8, R9
+; Windows x64 calls:
+; RCX, RDX, R8, R9 for first 4 arg

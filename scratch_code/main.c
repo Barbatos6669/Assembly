@@ -2,6 +2,5 @@
 
 int main() 
 { 
-    printf("Hello, World!\n"); 
-    return 0; 
+    long long int n; // Declare a variable to store the number of elements in the array 
 } 

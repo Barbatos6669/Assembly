@@ -1,0 +1,67 @@
+; =====================
+; 📦 Data Movement
+; =====================
+
+MOV     dest, src        ; Copy data from src to dest (register, memory, or immediate)
+LEA     reg, [mem]       ; Load address into register (useful for pointer arithmetic)
+XCHG    reg1, reg2       ; Swap values of two registers
+MOVSX   reg, src         ; Move with sign extension (preserve negative values)
+MOVZX   reg, src         ; Move with zero extension (fill extra bits with zeros)
+PUSH    value            ; Push value onto the stack (decrement RSP, store value)
+POP     reg              ; Pop value from stack into reg (load from stack, increment RSP)
+
+; =====================
+; ➕ Arithmetic
+; =====================
+
+ADD     reg, value       ; Add value to reg (reg = reg + value)
+SUB     reg, value       ; Subtract value from reg
+INC     reg              ; Increment reg by 1
+DEC     reg              ; Decrement reg by 1
+IMUL    reg, value       ; Signed multiplication (result in reg)
+IDIV    divisor          ; Signed divide: dividend in RAX, quotient in RAX, remainder in RDX
+NEG     reg              ; Negate value (two's complement: reg = -reg)
+
+; =====================
+; 🔢 Logic / Bitwise
+; =====================
+
+AND     reg, value       ; Bitwise AND (reg = reg & value)
+OR      reg, value       ; Bitwise OR (reg = reg | value)
+XOR     reg, value       ; Bitwise XOR (reg = reg ^ value)
+NOT     reg              ; Bitwise NOT (flip all bits)
+SHL     reg, count       ; Shift left (multiply by 2^count)
+SHR     reg, count       ; Logical shift right (unsigned)
+SAR     reg, count       ; Arithmetic shift right (preserve sign)
+ROL     reg, count       ; Rotate bits left
+ROR     reg, count       ; Rotate bits right
+
+; =====================
+; 🧠 Comparison & Test
+; =====================
+
+CMP     reg1, reg2       ; Compare (sets flags like JE, JL, etc. based on reg1 - reg2)
+TEST    reg1, reg2       ; Bitwise AND, sets flags, result is not stored
+
+; =====================
+; 🔁 Control Flow
+; =====================
+
+JMP     label            ; Unconditional jump to label
+JE/JZ   label            ; Jump if equal / zero flag set
+JNE/JNZ label            ; Jump if not equal / zero flag not set
+JG/JNLE label            ; Jump if greater (signed)
+JL/JNGE label            ; Jump if less (signed)
+JA/JNBE label            ; Jump if above (unsigned)
+JB/JNAE label            ; Jump if below (unsigned)
+CALL    function         ; Call subroutine (push return address, jump to function)
+RET                     ; Return from subroutine (pop return address into RIP)
+
+; =====================
+; 📚 Stack & Procedure
+; =====================
+
+PUSH    reg/value        ; Push register or value onto stack
+POP     reg              ; Pop value from stack into register
+CALL    label            ; Call function (like JMP, but saves return address)
+RET                      ; Return from function (jumps back to saved address)
